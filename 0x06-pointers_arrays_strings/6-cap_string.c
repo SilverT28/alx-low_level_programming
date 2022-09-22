@@ -1,32 +1,39 @@
 #include "main.h"
 
 /**
- * cap_string - multiplies two digits
- * @str: 1st digit in the multiplication
- * Description: multiplies two digits
- * Return: the result of the multiplication
+ * cap_string - capitalize all words of a string
+ * @str: string
+ * Return: `str`
  */
+
 char *cap_string(char *str)
 {
-	int i, ch, prev_space = 0;
+	int i, c;
+	int trigger;
+	char nots[] = ",;.!?(){}\n\t\" ";
 
-	i = 0;
-	while (str[i] != '\0')
+	for (i = 0, trigger = 0; str[i] != '\0'; i++)
 	{
-		ch = str[i];
-		if (ch == '\n' || ch == ' ' || ch == '\t' || ch == '.')
-			prev_space = 1;
-		if (ch >= 'a' && ch <= 'z' && prev_space)
+		if (str[0] > 96 && str[0] < 123)
+			trigger = 1;
+		for (c = 0; nots[c] != '\0'; c++)
 		{
-			str[i] = ch - 32;
-			prev_space = 0;
+			if (nots[c] == str[i])
+				trigger = 1;
 		}
-		else if (ch != '\n' && ch != ' ' && ch != '\t' &&
-				ch != '.' && prev_space)
+
+		if (trigger)
 		{
-			prev_space = 0;
+			if (str[i] > 96 && str[i] < 123)
+			{
+				str[i] -= 32;
+				trigger = 0;
+			}
+			else if (str[i] > 64 && str[i] < 91)
+				trigger = 0;
+			else if (str[i] > 47 && str[i] < 58)
+				trigger = 0;
 		}
-		i++;
 	}
 	return (str);
 }
