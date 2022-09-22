@@ -1,4 +1,4 @@
-
+#include "main.h"
 
 /**
  * cap_string - multiplies two digits
