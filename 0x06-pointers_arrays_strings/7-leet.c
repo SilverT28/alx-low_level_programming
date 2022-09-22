@@ -1,33 +1,25 @@
-
+#include "main.h"
 
 /**
- * leet - multiplies two digits
- * @str: 1st digit in the multiplication
- * Description: multiplies two digits
- * Return: the result of the multiplication
+ *leet- converts  letters to num
+ *@s: checked
+ *Return: s
  */
-char *leet(char *str)
+char *leet(char *s)
 {
-	int letter, i = 0;
+	int i, j;
 
-	while (str[i] != '\0')
+	char src[] = "aeotlAEOTL";
+	char dest[] = "4307143071";
+
+
+	for (i = 0; *(s + i); i++)
 	{
-		letter = str[i];
-		if (letter == 'A' || letter == 'a')
-			str[i] = '4';
-
-		if (letter == 'e' || letter == 'E')
-			str[i] = '3';
-
-		if (letter == 'o' || letter == 'O')
-			str[i] = '0';
-
-		if (letter == 't' || letter == 'T')
-			str[i] = '7';
-
-		if (letter == 'l' || letter == 'L')
-			str[i] = '1';
-		i++;
+		for (j = 0; j < 10; j++)
+		{
+			if (src[j] == *(s + i))
+				*(s + i) = dest[j];
+		}
 	}
-	return (str)
+	return (s);
 }
